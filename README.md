@@ -1,9 +1,10 @@
 # simple-data-miner
 This is an app that receives a input file (CSV type for now) and generates an output file with some additional data, like:
   1. Current Number
-	2. Show if current number is either EVEN or ODD
-	3. Show the integer multiple of 17 for current number (f(n) = number / 17)
-	4. Show the mod of number/17
+  2. Show if current number is either EVEN or ODD
+  3. Show the integer multiple of 17 for current number (f(n) = number / 17)
+  4. Show the mod of number/17
+  
 For example:
   - **input.csv**
    *line 2*: 5266

@@ -1,5 +1,7 @@
 package com.ciet.challenge.batchprocessing.core.numbertransformation;
 
+import com.ciet.challenge.batchprocessing.shared.dto.OutputNumberDto;
+
 class GetEvenOrOddTransformationDecorator extends AbstractTransformationRuleDecorator {
 
   public GetEvenOrOddTransformationDecorator(ITransformationRuleDecorator decorator) {
@@ -7,10 +9,10 @@ class GetEvenOrOddTransformationDecorator extends AbstractTransformationRuleDeco
   }
 
   @Override
-  public String transform(Long currentNumber) {
-    return getEvenOrOddTextOfCurrentNumber(currentNumber)
-        .concat(spliterator())
-        .concat(super.transform(currentNumber));
+  public OutputNumberDto transform(
+      OutputNumberDto.OutputNumberDtoDtoCreator outputNumberDtoDtoCreator, Long currentNumber) {
+    outputNumberDtoDtoCreator.setEvenOrOdd(getEvenOrOddTextOfCurrentNumber(currentNumber));
+    return super.transform(outputNumberDtoDtoCreator, currentNumber);
   }
 
   private String getEvenOrOddTextOfCurrentNumber(Long currentNumber) {

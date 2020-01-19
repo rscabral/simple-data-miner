@@ -1,5 +1,7 @@
 package com.ciet.challenge.batchprocessing.core.numbertransformation;
 
+import com.ciet.challenge.batchprocessing.shared.dto.OutputNumberDto;
+
 class GetRemainderOfDivisionTransformationDecorator extends AbstractTransformationRuleDecorator {
 
   // get from property file
@@ -10,13 +12,13 @@ class GetRemainderOfDivisionTransformationDecorator extends AbstractTransformati
   }
 
   @Override
-  public String transform(Long currentNumber) {
-    return getRemainderOfDivision(currentNumber, divisor)
-        .concat(spliterator())
-        .concat(super.transform(currentNumber));
+  public OutputNumberDto transform(
+      OutputNumberDto.OutputNumberDtoDtoCreator outputNumberDtoDtoCreator, Long currentNumber) {
+    outputNumberDtoDtoCreator.setIntResultOfMod(getRemainderOfDivision(currentNumber, divisor));
+    return super.transform(outputNumberDtoDtoCreator, currentNumber);
   }
 
-  private String getRemainderOfDivision(Long currentNumber, Long x) {
-    return Long.toString(currentNumber % x);
+  private Long getRemainderOfDivision(Long currentNumber, Long x) {
+    return currentNumber % x;
   }
 }

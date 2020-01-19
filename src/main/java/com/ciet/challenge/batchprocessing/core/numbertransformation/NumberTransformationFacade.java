@@ -1,5 +1,7 @@
 package com.ciet.challenge.batchprocessing.core.numbertransformation;
 
+import com.ciet.challenge.batchprocessing.shared.dto.OutputNumberDto;
+
 public class NumberTransformationFacade {
 
   private ITransformationRuleService
@@ -12,7 +14,7 @@ public class NumberTransformationFacade {
         transformationRuleForEachNumberService;
   }
 
-  public String transformData(Long number) {
+  public OutputNumberDto transformData(Long number) {
     return transformationRuleForEachNumberService.transformParsedData(number);
   }
 }

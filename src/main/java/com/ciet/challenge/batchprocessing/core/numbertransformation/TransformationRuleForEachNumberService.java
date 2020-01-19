@@ -1,5 +1,6 @@
 package com.ciet.challenge.batchprocessing.core.numbertransformation;
 
+import com.ciet.challenge.batchprocessing.shared.dto.OutputNumberDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,7 +16,7 @@ class TransformationRuleForEachNumberService implements ITransformationRuleServi
 
   }
 
-  public String transformParsedData(Long inputNumber) {
-    return transformationRuleDecorator.transform(inputNumber);
+  public OutputNumberDto transformParsedData(Long inputNumber) {
+    return transformationRuleDecorator.transform(OutputNumberDto.builder(), inputNumber);
   }
 }

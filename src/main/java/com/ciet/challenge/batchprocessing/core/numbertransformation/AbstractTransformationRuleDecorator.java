@@ -1,5 +1,7 @@
 package com.ciet.challenge.batchprocessing.core.numbertransformation;
 
+import com.ciet.challenge.batchprocessing.shared.dto.OutputNumberDto;
+
 abstract class AbstractTransformationRuleDecorator implements ITransformationRuleDecorator {
   private ITransformationRuleDecorator decorator;
 
@@ -8,11 +10,12 @@ abstract class AbstractTransformationRuleDecorator implements ITransformationRul
   }
 
   @Override
-  public String transform(Long currentNumber) {
+  public OutputNumberDto transform(
+      OutputNumberDto.OutputNumberDtoDtoCreator outputNumberDtoDtoCreator, Long currentNumber) {
     if (decorator != null) {
-      return decorator.transform(currentNumber);
+      return decorator.transform(outputNumberDtoDtoCreator, currentNumber);
     }
-    return "";
+    return outputNumberDtoDtoCreator.build();
   }
 
   @Override

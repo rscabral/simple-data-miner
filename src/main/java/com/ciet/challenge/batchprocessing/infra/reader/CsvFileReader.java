@@ -12,6 +12,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 class CsvFileReader extends AbstractFileReader<File, InputNumberDto> {
+  private Scanner scanner;
+
   @Override
   public File openFile(String path) throws IOException {
     Resource resource = new ClassPathResource(path);
@@ -22,7 +24,7 @@ class CsvFileReader extends AbstractFileReader<File, InputNumberDto> {
   }
 
   @Override
-  public List<InputNumberDto> extractData(File file) throws FileNotFoundException {
+  public List<InputNumberDto> extractDataList(File file) throws FileNotFoundException {
     List<InputNumberDto> inputNumberDtoList = new LinkedList<>();
     Scanner scanner = new Scanner(file);
     scanner.next();
@@ -31,5 +33,16 @@ class CsvFileReader extends AbstractFileReader<File, InputNumberDto> {
       inputNumberDtoList.add(inputNumberDto);
     }
     return inputNumberDtoList;
+  }
+
+  @Override public InputNumberDto extractData(File file) throws FileNotFoundException {
+    if (scanner == null) {
+      scanner = new Scanner(file);
+      scanner.next();
+    }
+    if (scanner.hasNext()) {
+      return new InputNumberDto(scanner.nextLong());
+    }
+    return null;
   }
 }

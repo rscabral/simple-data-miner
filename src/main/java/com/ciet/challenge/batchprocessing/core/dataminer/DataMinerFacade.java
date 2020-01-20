@@ -26,37 +26,35 @@ public class DataMinerFacade implements ItemReader<InputNumberDto>, ItemProcesso
 
   private AbstractFileReader fileReader;
 
-  private FileWriteType writeType;
-
-  private FileReaderType readerType;
-
   private String inputFileName = "input.csv";
+  private String outputFileNamePath = "outputCSV/output.csv";
 
-  public DataMinerFacade(IFileReaderAbstractFactory fileReaderFactory,
-                         IFileWriterAbstractFactory fileWriterFactory,
-                         FileReaderType readerType,
-                         FileWriteType writeType) {
+  public DataMinerFacade(
+      NumberTransformationFacade numberTransformationFacade,
+      IFileReaderAbstractFactory fileReaderFactory,
+      IFileWriterAbstractFactory fileWriterFactory,
+      FileReaderType readerType,
+      FileWriteType writeType) {
+    this.numberTransformationFacade = numberTransformationFacade;
     this.fileReader = readerType.createFileReader(fileReaderFactory);
     this.fileWriter = writeType.createFileReader(fileWriterFactory);
-    this.readerType = readerType;
-    this.writeType = writeType;
   }
 
   @Override
   public InputNumberDto read()
       throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-    return null;
+    InputNumberDto inputNumberDto = (InputNumberDto) fileReader.extractDataFromFile(inputFileName);
+    return inputNumberDto;
   }
 
   @Override
   public OutputNumberDto process(InputNumberDto inputNumberDto) throws Exception {
     OutputNumberDto result = numberTransformationFacade.transformData(inputNumberDto.getNumber());
-
-    return null;
+    return result;
   }
 
   @Override
   public void write(List<? extends OutputNumberDto> list) throws Exception {
-
+    fileWriter.write(outputFileNamePath, list);
   }
 }

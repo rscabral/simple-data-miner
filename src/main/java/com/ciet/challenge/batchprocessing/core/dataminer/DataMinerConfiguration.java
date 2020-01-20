@@ -1,5 +1,6 @@
 package com.ciet.challenge.batchprocessing.core.dataminer;
 
+import com.ciet.challenge.batchprocessing.core.numbertransformation.NumberTransformationFacade;
 import com.ciet.challenge.batchprocessing.infra.reader.FileReaderType;
 import com.ciet.challenge.batchprocessing.infra.reader.IFileReaderAbstractFactory;
 import com.ciet.challenge.batchprocessing.infra.writer.FileWriteType;
@@ -13,9 +14,11 @@ class DataMinerConfiguration {
 
   @Bean
   @Primary
-  DataMinerFacade dataMinerFacade(IFileReaderAbstractFactory fileReaderFactory,
+  DataMinerFacade dataMinerFacade(NumberTransformationFacade numberTransformationFacade,
+                                  IFileReaderAbstractFactory fileReaderFactory,
                                   IFileWriterAbstractFactory fileWriterFactory) {
-    return new DataMinerFacade(fileReaderFactory, fileWriterFactory, FileReaderType.CSV,
+    return new DataMinerFacade(numberTransformationFacade, fileReaderFactory, fileWriterFactory,
+        FileReaderType.CSV,
         FileWriteType.CSV);
   }
 

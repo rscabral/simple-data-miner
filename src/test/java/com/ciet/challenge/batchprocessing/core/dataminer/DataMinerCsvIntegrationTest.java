@@ -2,6 +2,7 @@ package com.ciet.challenge.batchprocessing.core.dataminer;
 
 import com.ciet.challenge.batchprocessing.shared.dto.InputNumberDto;
 import com.ciet.challenge.batchprocessing.shared.dto.OutputNumberDto;
+import com.ciet.challenge.batchprocessing.shared.utils.FilesCleanUpUtils;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,10 +20,7 @@ public class DataMinerCsvIntegrationTest {
 
   @BeforeEach
   public void clean() {
-    File dir = new File(outputFilePath);
-    for (File file : dir.listFiles()) {
-      file.delete();
-    }
+    FilesCleanUpUtils.cleanUpFiles(outputFilePath);
   }
 
   @Test
@@ -46,7 +44,6 @@ public class DataMinerCsvIntegrationTest {
 
   @Test
   public void givenAnOutputNumberDtoListShouldWriteACsvFile() throws Exception {
-    String outputFilePath = "outputCSV/outputTest.csv";
     List<OutputNumberDto> outputNumberDtoList = new LinkedList<>();
     outputNumberDtoList.add(OutputNumberDto.builder().setNumber(289L).setEvenOrOdd(
         "IMPAR").setIntResultOfDivision(17L).setIntResultOfMod(0L).build());

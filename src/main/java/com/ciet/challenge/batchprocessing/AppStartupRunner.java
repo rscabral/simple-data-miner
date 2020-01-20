@@ -1,6 +1,7 @@
 package com.ciet.challenge.batchprocessing;
 
 import com.ciet.challenge.batchprocessing.shared.utils.FilesCleanUpUtils;
+import com.ciet.challenge.batchprocessing.shared.utils.FolderCreatorUtils;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -31,6 +32,7 @@ public class AppStartupRunner implements ApplicationRunner {
 
   @PostConstruct
   public void cleanUp() {
+    FolderCreatorUtils.createFolder(outputFilePath);
     FilesCleanUpUtils.cleanUpFiles(outputFilePath);
   }
 

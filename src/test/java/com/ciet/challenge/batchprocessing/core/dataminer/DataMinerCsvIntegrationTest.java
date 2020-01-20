@@ -3,6 +3,7 @@ package com.ciet.challenge.batchprocessing.core.dataminer;
 import com.ciet.challenge.batchprocessing.shared.dto.InputNumberDto;
 import com.ciet.challenge.batchprocessing.shared.dto.OutputNumberDto;
 import com.ciet.challenge.batchprocessing.shared.utils.FilesCleanUpUtils;
+import com.ciet.challenge.batchprocessing.shared.utils.FolderCreatorUtils;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class DataMinerCsvIntegrationTest {
 
   @BeforeEach
   public void clean() {
+    FolderCreatorUtils.createFolder(outputFilePath);
     FilesCleanUpUtils.cleanUpFiles(outputFilePath);
   }
 

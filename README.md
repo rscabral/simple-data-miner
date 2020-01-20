@@ -12,14 +12,15 @@ For example:
   *line 2* 5266,EVEN,309,13
 
 ## Frameworks
+ - Spring Boot
  - Spring Batch
 
 ## How to build/run
- - Use Maven: 
-   - insert the *input.csv* into: **?**
+ - **Optional**: replace the current input.csv (*src/main/resources*) if you prefer 
+ - Using Maven: 
    - *mvn clean package*
-   - *mvn spring-boot:run*
-   - check the *output.csv* at: **?**
+   - *mvn spring-boot:run -Dspring-boot.run.profiles=prod*
+   - check the *output.csv* at: **/outputCSV**
 
 ## Code Architecture
 Get my draw.io [here](https://drive.google.com/open?id=1ap8M45Ma9e0CJ4CweRkKaiL1O649jB2m)

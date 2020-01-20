@@ -6,11 +6,21 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CsvFileWriterUnitTest {
   private CsvFileWriter csvFileWriter = new CsvFileWriter();
-  private String outputFilePath = "outputCSV/outputTest.csv";
+  private String outputFileNamePath = "outputCSV/outputTest.csv";
+  private String outputFilePath = "outputCSV";
+
+  @BeforeEach
+  public void clean() {
+    File dir = new File(outputFilePath);
+    for (File file : dir.listFiles()) {
+      file.delete();
+    }
+  }
 
   @Test
   public void givenInputNumberDtoListShouldCreateACsvFile() throws IOException {
@@ -20,10 +30,10 @@ public class CsvFileWriterUnitTest {
     outputNumberDtoList.add(OutputNumberDto.builder().setNumber(5266L).setEvenOrOdd(
         "PAR").setIntResultOfDivision(309L).setIntResultOfMod(13L).build());
 
-    csvFileWriter.write(outputFilePath, outputNumberDtoList);
+    csvFileWriter.write(outputFileNamePath, outputNumberDtoList);
 
     File file = new File(outputFilePath);
 
-    Assert.assertNotNull(file);
+    Assert.assertNotNull(file.listFiles());
   }
 }

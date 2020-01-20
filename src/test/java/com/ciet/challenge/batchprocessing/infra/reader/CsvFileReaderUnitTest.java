@@ -15,9 +15,19 @@ public class CsvFileReaderUnitTest {
   public void givenInputFileShouldReturnInputNumberDtoList() throws IOException {
     int expectedSize = 1000;
     File file = csvFileReader.openFile(filePath);
-    List<InputNumberDto> inputNumberDtoList = csvFileReader.extractData(file);
+    List<InputNumberDto> inputNumberDtoList = csvFileReader.extractDataList(file);
 
     Assert.assertTrue(inputNumberDtoList != null && !inputNumberDtoList.isEmpty());
     Assert.assertEquals(expectedSize, inputNumberDtoList.size());
+  }
+
+  @Test
+  public void givenInputFileShouldReturnInputNumberDto() throws IOException {
+    InputNumberDto firstData = new InputNumberDto(5266L);
+    InputNumberDto secondData = new InputNumberDto(4718L);
+
+    File file = csvFileReader.openFile(filePath);
+    Assert.assertEquals(firstData, csvFileReader.extractData(file));
+    Assert.assertEquals(secondData, csvFileReader.extractData(file));
   }
 }

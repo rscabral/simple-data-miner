@@ -1,6 +1,7 @@
 package com.ciet.challenge.batchprocessing.infra.writer;
 
 import com.ciet.challenge.batchprocessing.shared.dto.OutputNumberDto;
+import com.ciet.challenge.batchprocessing.shared.utils.FilesCleanUpUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -16,10 +17,7 @@ public class CsvFileWriterUnitTest {
 
   @BeforeEach
   public void clean() {
-    File dir = new File(outputFilePath);
-    for (File file : dir.listFiles()) {
-      file.delete();
-    }
+    FilesCleanUpUtils.cleanUpFiles(outputFilePath);
   }
 
   @Test

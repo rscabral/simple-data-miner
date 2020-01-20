@@ -1,4 +1,4 @@
-package com.ciet.challenge.batchprocessing.core.batchjob;
+package com.ciet.challenge.batchprocessing.infra.batchjob;
 
 import com.ciet.challenge.batchprocessing.shared.dto.InputNumberDto;
 import com.ciet.challenge.batchprocessing.shared.dto.OutputNumberDto;
